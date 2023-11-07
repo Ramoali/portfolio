@@ -33,7 +33,7 @@ Welcome to my portfolio repository. This repository contains the source code for
 
 ## License
 
-Please note that this project is provided under a specific [license](LICENSE.md). Be sure to review the license terms before using or modifying this code.
+Please note that this project is provided under a specific [license](LICENSE). Be sure to review the license terms before using or modifying this code.
 
 Feel free to explore and use the portfolio code as a starting point for your own portfolio. If you have any questions or encounter any issues, don't hesitate to reach out.
 
