@@ -14,3 +14,13 @@ jobs:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/node_modules/**
+            contact_form.php
+            package.json
+            package-lock.json
+            README.md
+            purgecss.config.js
+            **/.deepsource.toml**
