@@ -2,6 +2,12 @@
 
 Welcome to my portfolio repository. This repository contains the source code for my portfolio website. If you'd like to use the contact form feature, please follow the instructions below to configure the `contact_form.php` file.
 
+<p align="center">
+  <img src="https://github.com/mimoudix/portfolio/blob/main/assets/resume.gif?raw=true" alt="Resume GIF" />
+</p>
+
+
+
 ## Configuring the Contact Form
 
 1. **reCAPTCHA Keys**: You will need to set up your reCAPTCHA keys. If you don't have reCAPTCHA keys, you can obtain them from the [reCAPTCHA website](https://www.google.com/recaptcha). Once you have your keys, open `contact_form.php` and fill in the `captchaSiteKey` and `captchaSecretKey` variables.
