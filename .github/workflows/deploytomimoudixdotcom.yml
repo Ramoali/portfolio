@@ -17,10 +17,5 @@ jobs:
           exclude: |
             **/.git*
             **/.git*/**
-            **/node_modules/**
             contact_form.php
-            package.json
-            package-lock.json
             README.md
-            purgecss.config.js
-            **/.deepsource.toml**
