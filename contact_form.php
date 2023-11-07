@@ -4,26 +4,26 @@ require_once 'functions.php';
 
 if (isset($_POST['name'], $_POST['email'], $_POST['phone'], $_POST['message'])) {
 
-    // Recaptcha variables
-    $captchaSiteKey = '6LdvGZIhAAAAAL7nolEKdndBjb9MbWDC8EBm4Qtd';
-    $captchaSecretKey = '6LdvGZIhAAAAAMHoJCE_07cqIDedno9XxMZtAg3g';
+    // Add your reCAPTCHA Site Key and Secret Key here
+    $captchaSiteKey = '';
+    $captchaSecretKey = '';
+
+    // Add your informations here
+    $php_author = "MimoudiX";
+    $php_main_email = "contact@mimoudix.com";
+    $php_from_email = 'no-reply@mimoudix.com';
+    $php_subject = "Message from Website";
 
     // Recaptcha verification
     $createGoogleUrl = 'https://www.google.com/recaptcha/api/siteverify?secret=' . $captchaSecretKey . '&response=' . $_POST['g-recaptcha-response'];
     $verifyRecaptcha = curlRequest($createGoogleUrl);
     $decodeGoogleResponse = json_decode($verifyRecaptcha, true);
 
-    // Email Configuration
-    $php_main_email = "contact@mimoudix.com";
-    $php_from_email = 'no-reply@mimoudix.com';
+    // Get form data
     $php_email = $_POST['email'];
-    
-    //Fetching Values from URL
     $php_name = $_POST['name'];
-    $php_author = "MimoudiX";
     $php_phone = $_POST['phone'];
     $php_message = $_POST['message'];
-    $php_subject = "Message from Website";
     $user_ip = get_user_ip();
     $user_browser = get_user_browser();
     $user_os = get_user_os();
@@ -50,7 +50,7 @@ if (isset($_POST['name'], $_POST['email'], $_POST['phone'], $_POST['message'])) 
         . 'This is a Contact Confirmation mail.'
         . '<br/>'
         . 'I will contact you as soon as possible.</div>';
-    
+
     $php_sendmessage = "<div style=\"background-color:#f5f5f5; color:#333;\">" . $php_template . "</div>";
 
     // Ensure that lines do not exceed 70 characters (PHP rule)
