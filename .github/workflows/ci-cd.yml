@@ -1,0 +1,58 @@
+name: CI/CD Portfolio Deployment
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+
+  build:
+    name: 🔧 Build Docker Image
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v3
+
+      - name: 🐳 Set up Docker
+        uses: docker/setup-buildx-action@v3
+
+      - name: 🔨 Build Docker image
+        run: docker build -t portfolio-nginx .
+
+  push:
+    name: 📦 Push Docker Image to Docker Hub
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v3
+
+      - name: 🔐 Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: 📦 Build and Push
+        run: |
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/portfolio-nginx:latest .
+          docker push ${{ secrets.DOCKER_USERNAME }}/portfolio-nginx:latest
+
+  deploy:
+    name: 🚀 Deploy to Kubernetes Cluster
+    runs-on: ubuntu-latest
+    needs: push
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v3
+
+      - name: 🔐 Set up kubeconfig
+        run: |
+          mkdir -p $HOME/.kube
+          echo "${{ secrets.KUBECONFIG }}" > $HOME/.kube/config
+
+      - name: 🚀 Deploy to Kubernetes
+        run: |
+          kubectl set image deployment/portfolio-deployment portfolio-container=${{ secrets.DOCKER_USERNAME }}/portfolio-nginx:latest
+          kubectl rollout status deployment/portfolio-deployment
