@@ -1,5 +1,5 @@
 # Utiliser l'image officielle NGINX
-FROM nginx:alpine
+FROM nginx:latest
 
 # Supprimer la page par défaut de NGINX
 RUN rm -rf /usr/share/nginx/html/*
