@@ -10,3 +10,4 @@ COPY . /usr/share/nginx/html/
 # Exposer le port utilisé par NGINX
 EXPOSE 80
 
+
